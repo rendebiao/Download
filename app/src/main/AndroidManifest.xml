@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rendebiao.download">
+    package="com.rendebiao.demo">
 
     <application
         android:allowBackup="true"
