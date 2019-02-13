@@ -1,4 +1,4 @@
-package com.rendebiao.download;
+package com.rdb.download;
 
 import android.text.TextUtils;
 import android.util.Log;
