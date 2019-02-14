@@ -13,7 +13,7 @@ import java.util.concurrent.BlockingQueue;
  * Created by DB on 2018/6/6.
  */
 
-public class DownloadWriter extends Thread {
+class DownloadWriter extends Thread {
 
     private File file;
     private boolean mapped;
