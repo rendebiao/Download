@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DownloadConfig config=new DownloadConfig.Builder()
-                .setBufferSize(1024)//片段缓存字节数
+                .setBufferSize(102400)//片段缓存字节数
                 .setMaxTaskCount(3)//最大下载任务数
                 .setDownloadPartRule(new DownloadPartRule() {//分段规则
                     @Override
