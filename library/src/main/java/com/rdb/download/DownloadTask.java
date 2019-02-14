@@ -192,7 +192,7 @@ class DownloadTask implements Runnable {
     }
 
     private void startDownloadWriter(File file, int fileLength) {
-        downloadWriter = new DownloadWriter(file, readQueue, writeQueue, fileLength, true);
+        downloadWriter = new DownloadWriter(file, readQueue, writeQueue, fileLength, false);
         downloadWriter.setName("DownloadWriter:" + downloadInfo.getFileName());
         downloadWriter.setDaemon(true);
         downloadWriter.start();
