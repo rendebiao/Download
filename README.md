@@ -1,2 +1,2 @@
-# download
-[![](https://jitpack.io/v/rendebiao/download.svg)](https://jitpack.io/#rendebiao/download)
+# Download
+[![](https://jitpack.io/v/rendebiao/download.svg)](https://jitpack.io/#rendebiao/Download)
