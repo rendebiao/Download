@@ -1,20 +1,26 @@
 package com.rdb.download.demo;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
-import android.os.Environment;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rdb.download.DownloadConfig;
 import com.rdb.download.DownloadFileNameBuilder;
@@ -57,6 +63,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         downloadListView.setLayoutManager(new LinearLayoutManager(this));
         downloadAdapter = new DownloadAdapter(this, downloadInfos);
         downloadListView.setAdapter(downloadAdapter);
+        checkPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE, 100, "请您授予读取SD卡的权限 否则应用无法运行");
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 100 && grantResults.length == 1) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED && hasPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+            } else {
+                Toast.makeText(this, "没有授予SD卡读写权限 应用无法运行", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
     }
 
 
@@ -67,6 +87,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             downloadInfos.clear();
             downloadInfos.addAll(downloadManager.getDownloadInfos());
             downloadAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public boolean hasPermission(Context context, String permission) {
+        return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public boolean checkPermission(final Activity context, final String permission, final int requestCode, String hint) {
+        if (hasPermission(context, permission)) {
+            return true;
+        } else {
+            if (!ActivityCompat.shouldShowRequestPermissionRationale(context, permission)) {
+                new AlertDialog.Builder(this).setMessage(hint).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions(context, new String[]{permission}, requestCode);
+                    }
+                }).setCancelable(false).show();
+            } else {
+                ActivityCompat.requestPermissions(context, new String[]{permission}, requestCode);
+            }
+            return false;
         }
     }
 
