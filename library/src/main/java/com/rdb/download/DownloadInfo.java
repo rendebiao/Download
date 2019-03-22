@@ -4,10 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by DB on 2017/8/10.
- */
-
 public class DownloadInfo {
 
     private int type;

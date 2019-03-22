@@ -5,10 +5,6 @@ import android.text.TextUtils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by DB on 2017/8/10.
- */
-
 public abstract class DownloadFileNameBuilder {
 
     public static DownloadFileNameBuilder DATE = new DownloadFileNameBuilder() {

@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Download");
+        getSupportActionBar().setElevation(0);
         DownloadConfig config=new DownloadConfig.Builder()
                 .setBufferSize(102400)//片段缓存字节数
                 .setMaxTaskCount(3)//最大下载任务数

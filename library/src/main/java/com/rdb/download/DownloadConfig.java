@@ -5,10 +5,6 @@ import android.util.Log;
 
 import java.io.File;
 
-/**
- * Created by DB on 2017/8/13 0013.
- */
-
 public class DownloadConfig {
 
     private static final String LOG_TAG = "Download";

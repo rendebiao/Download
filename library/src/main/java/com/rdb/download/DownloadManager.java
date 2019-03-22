@@ -14,10 +14,6 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * Created by DB on 2017/8/10.
- */
-
 public class DownloadManager {
 
     private static DownloadManager instance;

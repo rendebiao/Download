@@ -8,10 +8,6 @@ import java.util.HashMap;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-/**
- * Created by DB on 2017/7/13.
- */
-
 class DownloadTask implements Runnable {
 
     private static HashMap<String, DownloadTask> downloadTasks = new HashMap<>();

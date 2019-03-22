@@ -1,9 +1,5 @@
 package com.rdb.download;
 
-/**
- * Created by DB on 2017/7/13.
- */
-
 public class DownloadListener {
 
     private Object tag;

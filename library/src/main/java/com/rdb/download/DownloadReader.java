@@ -5,9 +5,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.BlockingQueue;
 
-/**
- * Created by DB on 2017/7/13.
- */
 class DownloadReader extends Thread {
 
     private int bufferSize;

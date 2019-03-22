@@ -2,10 +2,6 @@ package com.rdb.download;
 
 import java.util.Comparator;
 
-/**
- * Created by DB on 2018/6/6.
- */
-
 public class DownloadComparator implements Comparator<DownloadInfo> {
 
     private boolean desc;

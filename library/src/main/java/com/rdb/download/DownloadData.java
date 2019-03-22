@@ -1,9 +1,5 @@
 package com.rdb.download;
 
-/**
- * Created by DB on 2018/6/6.
- */
-
 class DownloadData {
 
     private int offset;

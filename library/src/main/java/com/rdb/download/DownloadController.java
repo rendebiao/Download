@@ -7,10 +7,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * Created by DB on 2017/8/12 0012.
- */
-
 class DownloadController extends DownloadListener {
 
     private Handler handler;

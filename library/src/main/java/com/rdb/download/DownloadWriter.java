@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
-/**
- * Created by DB on 2018/6/6.
- */
-
 class DownloadWriter extends Thread {
 
     private File file;
