@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -44,7 +45,7 @@ class DownloadTask implements Runnable {
         DownloadConfig.log(name + " start");
         handStart();
         try {
-            URL fileUrl = new URL(downloadInfo.getUrl());
+            URL fileUrl = new URL(encodeUrl(downloadInfo.getUrl()));
             boolean supportRange = supportRange(fileUrl);
             DownloadConfig.log(name + " supportRange = " + supportRange);
             int length = getContentLength(fileUrl);
@@ -109,6 +110,31 @@ class DownloadTask implements Runnable {
             while (readQueue.size() > 0) {
                 readQueue.poll().recycle();
             }
+        }
+    }
+
+    private String encodeUrl(String url) throws Exception {
+        int index = url.indexOf("?");
+        if (index < 0) {
+            return url;
+        } else {
+            String query = url.substring(0, index);
+            String params = url.substring(index + 1);
+            StringBuilder sb = new StringBuilder(query);
+            String[] pairs = params.split("&");
+            int count = 0;
+            for (int i = 0; i < pairs.length; i++) {
+                int pos = pairs[i].indexOf("=");
+                if (pos >= 0) {
+                    String key = pairs[i].substring(0, pos);
+                    String value = pairs[i].substring(pos + 1);
+                    value = URLEncoder.encode(value, "utf-8");
+                    sb.append(count == 0 ? "?" : "&");
+                    sb.append(key).append("=").append(value);
+                    count++;
+                }
+            }
+            return sb.toString();
         }
     }
 
